@@ -18,6 +18,9 @@ build:
 install:
 	go install -trimpath -ldflags "-s -w $(GOVARS)" ./cmd/sregx
 
+uninstall:
+	rm -f $(shell go env GOPATH)/bin/sregx
+
 sregx.1: man/sregx.md
 	pandoc man/sregx.md -s -t man -o sregx.1
 
@@ -33,4 +36,4 @@ clean:
 	rm -f sregx sregx.exe sregx.1 sregx-*.tar.gz
 	rm -rf sregx-*/
 
-.PHONY: build clean install package
+.PHONY: build clean install package uninstall
